@@ -1,4 +1,6 @@
 Story::Application.routes.draw do
+  get "file/upload"
+
   resources :events
 
 
