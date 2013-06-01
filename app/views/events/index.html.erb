@@ -1,13 +1,73 @@
-
-<% @events.each_with_index do |event, index| %>
-    <div class="featurette">
-      <img class="featurette-image pull-<%= index % 2 == 0 ? "right":"left" %>" src="<%= event.img_url %>">
-      <h2 class="featurette-heading"><%= link_to event.name, event %> <span class="muted"><%= event.left_to_s %></span></h2>
-      <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
+    <div class="container">
+      <div class="well form-horizontal">
+        <div class="control-group">
+          <div class="span8">
+            <div class="control-group">
+              <div class="control-label">名称</div>
+              <div class="controls">
+                <input>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="control-label">详情</div>
+              <div class="controls">
+                <textarea></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="span4 pull-right">
+            <img src="/img/love/kids-sad.jpg" class="img-rounded form-img-preview">
+          </div>
+        </div>
+        <a href="<%= new_event_path %>" class="btn btn-success"><i class="icon-plus"></i></a>
+      </div>
     </div>
-    <hr class="featurette-divider">
-<% end %>
+<div class="container marketing stories">
+  <% @events.each_with_index do |event, index| %>
+      <div class="featurette">
+        <img class="featurette-image pull-<%= index % 2 == 0 ? "right":"left" %>" src="<%= event.img_url %>">
+        <h2 class="featurette-heading"><%= link_to event.name, event %> <span class="muted"><%= event.left_to_s %></span></h2>
+        <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
+      </div>
+      <hr class="featurette-divider">
+  <% end %>
+</div><!-- /.container -->
 
-<br />
+<script>
+    $(function() {
+        new qq.FileUploader({
+            element: document.getElementById('file-uploader-snapshot'),
+            action: '/file/upload',
+            inputName: 'snapshot',
+            debug: true,
+            forceMultipart: true,
+            uploadButtonText: "上传截图",
+            onComplete: function(id, fileName, responseJSON) {
+                if (responseJSON.success) {
+                    var snapshot = responseJSON.data;
+                    for(var i=0;i<10;i++){
+                        if($("#screenshot-"+i).attr("hasUp") == "false"){
+                            $("#screenshot-img-"+i).attr("src", "/manage/admin/upload/tmp?name="+snapshot);
+                            $("#snapshot"+i).val(snapshot);
+                            $("#del-"+i).toggle();
+                            $("#screenshot-"+i).attr("hasUp","true");
+                            break;
+                        }
+                    }
+                } else {
+                    alert(responseJSON.message);
+                }
+            }
+        });
 
-<a href="<%= new_event_path %>" class="btn btn-success"><i class="icon-plus"></i></a>
+        // 图片删除，动态绑定
+        $('#thumb a[id^="del-"]').click(function(evt){
+            var i = evt.target.id.match(/\d+/)[0];
+            $("#screenshot-img-"+i).attr("src", "/manage/images/thumb.png");
+            $("#snapshot"+i).val("");
+            $("#del-"+i).toggle();
+            $("#screenshot-"+i).attr("hasUp","false");
+            return false;
+        });
+    });
+</script>
