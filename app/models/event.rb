@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   validates :name, :description, :img_url, :repeat, :visible, :effect_at, :presence => true
 
   def pass?
-    Date::today > self.effect_at
+    Date::today >= self.effect_at
   end
 
   def not_pass?
@@ -14,9 +14,18 @@ class Event < ActiveRecord::Base
   end
 
   def day_left
-    delta = nil
+    today = Date::today
+    delta = -1
     if not_pass?
-      delta = self.effect_at - Date::today
+      delta = self.effect_at - today
+    else
+      if self.repeat == 'YEAR'
+        repeat_date = Date.new(today.year, self.effect_at.month, self.effect_at.day)
+        delta = repeat_date - today
+      elsif self.repeat == 'MONTH'
+        repeat_date = Date.new(today.year, today.month, self.effect_at.day)
+        delta = repeat_date - today
+      end
     end
 
     delta.to_i

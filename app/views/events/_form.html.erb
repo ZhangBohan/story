@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :repeat %><br />
-    <%= select(:event, :repeat, [['Year', 'YEAR'], ['Month', 'MONTH']]) %>
+    <%= select(:event, :repeat, [['--Select--', 'NO'], ['Year', 'YEAR'], ['Month', 'MONTH']]) %>
   </div>
   <div class="field">
     <%= f.label :effect_at %><br />
-    <%= f.date_select :effect_at %>
+    <%= f.date_select :effect_at, options = {:start_year => 1900} %>
   </div>
   <div class="field">
     <%= f.label :img_url %><br />
