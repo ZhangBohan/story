@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class Event < ActiveRecord::Base
   attr_accessible :description, :effect_at, :img_url, :name, :repeat, :visible
 
@@ -18,5 +20,16 @@ class Event < ActiveRecord::Base
     end
 
     delta.to_i
+  end
+
+  def left_to_s
+    str = ''
+    if day_left == 0
+      str = '就是今天'
+    elsif day_left > 0
+      str = "还有#{day_left}天"
+    end
+
+    str
   end
 end

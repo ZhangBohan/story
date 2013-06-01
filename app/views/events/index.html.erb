@@ -1,33 +1,12 @@
-<h1>Listing events</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Repeat</th>
-    <th>Effect at</th>
-    <th>Img url</th>
-    <th>Visible</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.description %></td>
-    <td><%= event.repeat %></td>
-    <td><%= event.effect_at %></td>
-    <td><%= event.img_url %></td>
-    <td><%= event.visible %></td>
-    <td><%= event.day_left %>天</td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% @events.each_with_index do |event, index| %>
+    <div class="featurette">
+      <img class="featurette-image pull-<%= index % 2 == 0 ? "right":"left" %>" src="<%= event.img_url %>">
+      <h2 class="featurette-heading"><%= link_to event.name, event %> <span class="muted"><%= event.left_to_s %></span></h2>
+      <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
+    </div>
+    <hr class="featurette-divider">
 <% end %>
-</table>
 
 <br />
 
