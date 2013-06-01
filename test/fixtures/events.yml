@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  repeat: MyString
+  effect_at: 2013-06-01
+  img_url: MyString
+  visible: false
+
+two:
+  name: MyString
+  description: MyText
+  repeat: MyString
+  effect_at: 2013-06-01
+  img_url: MyString
+  visible: false
