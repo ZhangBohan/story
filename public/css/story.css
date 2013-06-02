@@ -242,3 +242,7 @@ body {
 .form-img-preview {
     width: 140px;
 }
+
+.controls-actions {
+    margin-top: 20px;
+}
