@@ -2,7 +2,7 @@ Story::Application.routes.draw do
   get "file/upload"
 
   resources :events
-
+  match 'events/:id/delete' => 'events#delete', :as => :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
