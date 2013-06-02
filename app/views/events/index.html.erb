@@ -1,37 +1,22 @@
-    <div class="container">
-      <div class="well form-horizontal">
-        <div class="control-group">
-          <div class="span8">
-            <div class="control-group">
-              <div class="control-label">名称</div>
-              <div class="controls">
-                <input>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="control-label">详情</div>
-              <div class="controls">
-                <textarea></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="span4 pull-right">
-            <img src="/img/love/kids-sad.jpg" class="img-rounded form-img-preview">
-          </div>
-        </div>
-        <a href="<%= new_event_path %>" class="btn btn-success"><i class="icon-plus"></i></a>
-      </div>
-    </div>
+
 <div class="container marketing stories">
   <% @events.each_with_index do |event, index| %>
       <div class="featurette">
         <img class="featurette-image pull-<%= index % 2 == 0 ? "right":"left" %>" src="<%= event.img_url %>">
-        <h2 class="featurette-heading"><%= link_to event.name, event %> <span class="muted"><%= event.left_to_s %></span></h2>
+        <h2 class="featurette-heading">
+          <%= link_to event.name, event %>
+          <span class="muted"><%= event.left_to_s %></span>
+          <%= link_to '编辑', edit_event_path(event), :class => "btn btn-large btn-info" %>
+        </h2>
         <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
       </div>
       <hr class="featurette-divider">
   <% end %>
 </div><!-- /.container -->
+
+<div class="container">
+  <a href="<%= new_event_path %>" class="btn btn-success btn-large btn-block"><i class="icon-plus"></i></a>
+</div>
 
 <script>
     $(function() {

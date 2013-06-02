@@ -1,35 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
-
-<p>
-  <b>Repeat:</b>
-  <%= @event.repeat %>
-</p>
-
-<p>
-  <b>Effect at:</b>
-  <%= @event.effect_at %>
-</p>
-
-<p>
-  <b>Img url:</b>
-  <%= @event.img_url %>
-</p>
-
-<p>
-  <b>Visible:</b>
-  <%= @event.visible %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="container">
+  <div class="featurette">
+    <img class="featurette-image pull-right" src="<%= @event.img_url %>">
+    <h2 class="featurette-heading">
+      <%= @event.name %>
+      <span class="muted"><%= @event.left_to_s %></span>
+    </h2>
+    <p class="lead"><strong><%= @event.effect_at %></strong><%= @event.description %></p>
+  </div>
+</div>
