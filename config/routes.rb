@@ -1,4 +1,8 @@
 Story::Application.routes.draw do
+  resources :storys
+
+  devise_for :users
+
   get "file/upload"
 
   resources :events

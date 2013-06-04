@@ -3,7 +3,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :description, :effect_at, :img_url, :name, :repeat, :visible
 
-  validates :name, :description, :img_url, :repeat, :visible, :effect_at, :presence => true
+  validates :name, :description, :img_url, :repeat, :effect_at, :presence => true
 
   def pass?
     Date::today >= self.effect_at
