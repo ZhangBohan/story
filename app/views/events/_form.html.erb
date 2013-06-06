@@ -50,10 +50,10 @@
     <div class="controls">
       <%= f.text_field :img_url, :class => 'hide' %>
       <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>上传图片</span>
-                    <input type="file" name="files[]" multiple="">
-                </span>
+        <i class="icon-plus icon-white"></i>
+        <span>上传图片</span>
+        <input id="fileupload" type="file" name="file" data-url="/file/upload/" multiple="">
+      </span>
     </div>
   </div>
     <div class="control-group">
@@ -72,12 +72,17 @@
   </div>
 <% end %>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#img-upload').change(function() {
-            $(this).upload('/jquery/upload/demo_upload.html', function(res) {
-                $(res).insertAfter(this);
-            }, 'html');
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
+<script>
+    $(function () {
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                console.debug(data);
+                alert("ok");
+            }
         });
     });
 </script>

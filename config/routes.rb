@@ -3,7 +3,7 @@ Story::Application.routes.draw do
 
   devise_for :users
 
-  get "file/upload"
+  match 'file/upload' => 'file#upload'
 
   resources :events
   match 'events/:id/delete' => 'events#delete', :as => :delete
