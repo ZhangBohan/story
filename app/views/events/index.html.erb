@@ -6,6 +6,11 @@
         <h2 class="featurette-heading">
           <%= event.name %>
           <span class="muted"><%= event.left_to_s %></span>
+          <% if event.visible %>
+              <span class="label label-success"><i class="icon-eye-open"></i>可见</span>
+          <% else %>
+              <span class="label label-warning"><i class="icon-eye-close"></i>不可见</span>
+          <% end %>
         </h2>
         <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
       </div>

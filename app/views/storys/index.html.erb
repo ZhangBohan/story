@@ -27,7 +27,7 @@
       <div class="featurette">
         <img class="featurette-image pull-<%= index % 2 == 0 ? "right":"left" %>" src="<%= event.img_url %>">
         <h2 class="featurette-heading">
-          <%= link_to event.name, event %>
+          <%= event.name %>
           <span class="muted"><%= event.left_to_s %></span>
         </h2>
         <p class="lead"><strong><%= event.effect_at %></strong><%= event.description %></p>
