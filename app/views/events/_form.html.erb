@@ -48,7 +48,12 @@
       <%= f.label :img_url %>
     </div>
     <div class="controls">
-      <%= f.text_field :img_url %>
+      <%= f.text_field :img_url, :class => 'hide' %>
+      <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>上传图片</span>
+                    <input type="file" name="files[]" multiple="">
+                </span>
     </div>
   </div>
     <div class="control-group">
@@ -66,3 +71,13 @@
     </div>
   </div>
 <% end %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#img-upload').change(function() {
+            $(this).upload('/jquery/upload/demo_upload.html', function(res) {
+                $(res).insertAfter(this);
+            }, 'html');
+        });
+    });
+</script>
