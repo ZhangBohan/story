@@ -9,7 +9,7 @@ class FileController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: {:status => 'ok', :name => uploaded_io.original_filename} }
+      format.json { render json: {:status => 'ok', :name => new_file_name} }
     end
   end
 end
