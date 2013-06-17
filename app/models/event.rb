@@ -21,10 +21,18 @@ class Event < ActiveRecord::Base
     else
       if self.repeat == 'YEAR'
         repeat_date = Date.new(today.year, self.effect_at.month, self.effect_at.day)
-        delta = repeat_date - today
+        if repeat_date > today
+          delta = repeat_date - today
+        else
+          delta = repeat_date + 1.month - today
+        end
       elsif self.repeat == 'MONTH'
         repeat_date = Date.new(today.year, today.month, self.effect_at.day)
-        delta = repeat_date - today
+        if repeat_date > today
+          delta = repeat_date - today
+        else
+          delta = repeat_date + 1.month - today
+        end
       end
     end
 
