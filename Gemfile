@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -40,3 +40,4 @@ gem 'bcrypt-ruby', "~> 3.0.0"
 
 # To use debugger
 # gem 'debugger'
+gem 'rails_12factor', group: :production
